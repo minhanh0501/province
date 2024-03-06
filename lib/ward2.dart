@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
+//import 'package:flutter/services.dart';
+//import 'package:flutter/material.dart';
 
 class Province {
   final String? id;
@@ -167,27 +167,4 @@ class Ward {
       level.hashCode ^
       provinceId.hashCode ^
       districtId.hashCode;
-}
-
-List<Province> provinceList = []; // Định nghĩa biến provinceList
-List<District> districtList = []; // Định nghĩa biến districtList
-List<Ward> wardList = []; // Định nghĩa biến wardList
-
-Future<void> loadLocationData() async {
-  try {
-    String data = await rootBundle.loadString('assets/don_vi_hanh_chinh.json');
-    Map<String, dynamic> jsonData = json.decode(data);
-    List provinceData = jsonData['province'];
-    provinceList = provinceData.map((json) => Province.fromMap(json)).toList();
-    List districtData = jsonData['district'];
-    districtList = districtData.map((json) => District.fromMap(json)).toList();
-    List wardData = jsonData['ward'];
-    wardList = wardData.map((json) => Ward.fromMap(json)).toList();
-  } catch (e) {
-    debugPrint('Error loading location data: $e');
-  }
-}
-
-void main() {
-  loadLocationData();
 }
